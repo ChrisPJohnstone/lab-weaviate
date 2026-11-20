@@ -12,4 +12,4 @@ generator:
 
 destroy:
 	make -C generator clean
-	$(CONTAINER_ENGINE) compose down -v
+	$(CONTAINER_ENGINE) compose down
