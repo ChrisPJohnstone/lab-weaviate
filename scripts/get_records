@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+function get-records() {
+	local COLLECTION="${COLLECTION:-Question}"
+	local PROPERTIES="${PROPERTIES:-question, answer}"
+	weaviate-cli query data \
+		--collection "${COLLECTION}" \
+		--properties "${PROPERTIES}"
+}
+
+get-records "${@}"

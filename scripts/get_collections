@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+weaviate-cli get collection
