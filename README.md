@@ -7,6 +7,7 @@ A lab project for me to play with [weaviate](https://weaviate.io/)
 - Pre-Requisites
   - A container compose method e.g. `podman compose` or `docker compose`
   - [aardvark-dns](https://github.com/containers/aardvark-dns)
+  - Golang
   - Python3 or [weaviate-cli](https://github.com/weaviate/weaviate-cli) (If using scripts)
 - Start container & compile generator
   ```sh
