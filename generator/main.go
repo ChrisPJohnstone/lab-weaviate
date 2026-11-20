@@ -5,7 +5,9 @@ import (
 
 	"github.com/weaviate/weaviate-go-client/v6"
 	"github.com/weaviate/weaviate-go-client/v6/collections"
+	"github.com/weaviate/weaviate-go-client/v6/collections/vectorindex"
 	"github.com/weaviate/weaviate-go-client/v6/data"
+	"github.com/weaviate/weaviate-go-client/v6/modules/model2vec"
 )
 
 func createCollection(ctx context.Context, client *weaviate.Client) error {
@@ -22,6 +24,14 @@ func createCollection(ctx context.Context, client *weaviate.Client) error {
 		Properties: []collections.Property{
 			{Name: "question", DataType: collections.DataTypeText},
 			{Name: "answer", DataType: collections.DataTypeText},
+		},
+		Vectors: map[string]collections.VectorConfig{
+			"default": {
+				Vectorizer: model2vec.Text2Vec{
+					Properties: []string{"question"},
+				},
+				Index: vectorindex.HNSW{},
+			},
 		},
 	})
 	return err

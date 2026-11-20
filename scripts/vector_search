@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+function vector-search() {
+	local COLLECTION="${COLLECTION:-Question}"
+	if [[ "${#}" ]]; then
+		query="${*}"
+	else
+		query="What is the meaning of life"
+	fi
+	weaviate-cli query data \
+		--collection "${COLLECTION}" \
+		--search_type vector \
+		--query "${query}"
+}
+
+vector-search "${@}"

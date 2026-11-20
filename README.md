@@ -7,6 +7,7 @@ A lab project for me to play with [weaviate](https://weaviate.io/)
 - Pre-Requisites
   - A container compose method e.g. `podman compose` or `docker compose`
   - [aardvark-dns](https://github.com/containers/aardvark-dns)
+  - Python3 or [weaviate-cli](https://github.com/weaviate/weaviate-cli) (If using scripts)
 - Start container & compile generator
   ```sh
   make
@@ -17,6 +18,9 @@ A lab project for me to play with [weaviate](https://weaviate.io/)
   ```
 
 ## Scripts
+
+> [!NOTE]
+> The primary purpose of these notes is to document the CLI for me but they can be run directly
 
 - Install [weaviate-cli](https://github.com/weaviate/weaviate-cli) in virtual env
   ```sh
@@ -31,4 +35,8 @@ A lab project for me to play with [weaviate](https://weaviate.io/)
 - Get list of records
   ```sh
   ./scripts/get_records
+  ```
+- Vector search
+  ```sh
+  ./scripts/vector_search
   ```
