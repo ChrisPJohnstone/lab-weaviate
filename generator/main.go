@@ -8,7 +8,7 @@ import (
 	"github.com/weaviate/weaviate-go-client/v6/data"
 )
 
-func createColleciton(ctx context.Context, client *weaviate.Client) error {
+func createCollection(ctx context.Context, client *weaviate.Client) error {
 	exists, err := client.Collections.Exists(ctx, collectionName)
 	if err != nil {
 		return err
@@ -27,6 +27,15 @@ func createColleciton(ctx context.Context, client *weaviate.Client) error {
 	return err
 }
 
+func insertRecords(
+	ctx context.Context,
+	collection *collections.Handle,
+	record ...*data.Object,
+) error {
+	_, err := collection.Data.Insert(ctx, record...)
+	return err
+}
+
 func main() {
 	ctx := context.Background()
 	client, err := weaviate.NewLocal(ctx)
@@ -34,12 +43,12 @@ func main() {
 		panic(err)
 	}
 	defer client.Close()
-	err = createColleciton(ctx, client)
+	err = createCollection(ctx, client)
 	if err != nil {
 		panic(err)
 	}
 	questions := client.Collections.Use(collectionName)
-	_, err = questions.Data.Insert(ctx, &data.Object{Properties: map[string]any{
+	err = insertRecords(ctx, questions, &data.Object{Properties: map[string]any{
 		"question": "What is the meaning of life",
 		"answer":   "7",
 	}}, &data.Object{Properties: map[string]any{
