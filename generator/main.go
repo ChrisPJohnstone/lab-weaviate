@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"context"
+	"fmt"
+
+	"github.com/weaviate/weaviate-go-client/v6"
+)
 
 func main() {
-	fmt.Printf("Hello World!\n")
+	ctx := context.Background()
+	client, err := weaviate.NewLocal(ctx)
+	if err != nil {
+		panic(err)
+	}
+	defer client.Close()
+	fmt.Printf("%s\n", client)
 }

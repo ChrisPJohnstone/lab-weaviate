@@ -1,6 +1,8 @@
 CONTAINER_ENGINE ?= podman
 
-.PHONY: deploy generator destroy
+.PHONY: all deploy generator destroy
+
+all: deploy generator
 
 deploy:
 	$(CONTAINER_ENGINE) compose up -d
